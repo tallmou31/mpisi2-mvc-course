@@ -1,11 +1,16 @@
 package sn.esmt.mpisi2.course.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @OneToMany(mappedBy = "course")
     private List<Student> students = new ArrayList<>();
 
     public int getId() {

@@ -1,12 +1,13 @@
 package sn.esmt.mpisi2.course.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sn.esmt.mpisi2.course.models.Course;
 import sn.esmt.mpisi2.course.models.Student;
-import sn.esmt.mpisi2.course.services.CourseService;
 import sn.esmt.mpisi2.course.services.ICourseService;
 import sn.esmt.mpisi2.course.services.dto.CourseFormDTO;
 import sn.esmt.mpisi2.course.services.dto.StudentFormDTO;
@@ -16,11 +17,11 @@ import javax.validation.Valid;
 @Controller
 public class CourseController {
 
-    private final ICourseService courseService;
+    @Autowired
+    //@Qualifier("jdbc")
+    @Qualifier("jpa")
+    private ICourseService courseService;
 
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
-    }
 
     @GetMapping("/")
     public String showCoursesList(Model model) {
